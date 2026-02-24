@@ -147,6 +147,28 @@ def usuarios():
     conn.close()
 
     return render_template('usuarios.html', usuarios=lista)
+
+@app.route('/agregar_usuario', methods=['POST'])
+def agregar_usuario():
+    username = request.form['username']
+    password = request.form['password']
+
+    conn = sqlite3.connect(DATABASE)
+    cursor = conn.cursor()
+    # Evitar duplicados
+    cursor.execute("SELECT * FROM usuarios WHERE username=?", (username,))
+    if cursor.fetchone():
+        conn.close()
+        flash("El usuario ya existe")
+        return redirect(url_for('usuarios'))
+
+    cursor.execute("INSERT INTO usuarios (username, password) VALUES (?, ?)", (username, password))
+    conn.commit()
+    conn.close()
+
+    flash("Usuario creado exitosamente")
+    return redirect(url_for('usuarios'))
+
 # CONDUCTORES
 # =========================
 @app.route('/conductores')
@@ -310,6 +332,48 @@ def agregar_viaje():
     conn.commit()
     conn.close()
     return redirect(url_for('viajes'))
+@app.route('/eliminar_viaje/<int:id>')
+def eliminar_viaje(id):
+    if 'usuario' not in session:
+        return redirect(url_for('login'))
 
+    conn = sqlite3.connect(DATABASE)
+    cursor = conn.cursor()
+    cursor.execute("DELETE FROM viajes WHERE id=?", (id,))
+    conn.commit()
+    conn.close()
+    flash("Viaje eliminado exitosamente")
+    return redirect(url_for('viajes'))
+from datetime import date
+
+@app.route('/reporte_viajes')
+def reporte_viajes():
+    if 'usuario' not in session:
+        return redirect(url_for('login'))
+
+    conn = sqlite3.connect(DATABASE)
+    cursor = conn.cursor()
+
+    hoy = date.today().isoformat()  # formato YYYY-MM-DD
+
+    # Obtener viajes del día actual
+    cursor.execute("""
+        SELECT viajes.id, fecha, horario,
+               c1.nombre,
+               c2.nombre,
+               buses.placa,
+               rutas.origen || ' - ' || rutas.destino
+        FROM viajes
+        JOIN conductores c1 ON viajes.conductor_id = c1.id
+        LEFT JOIN conductores c2 ON viajes.conductor_suplente_id = c2.id
+        JOIN buses ON viajes.bus_id = buses.id
+        JOIN rutas ON viajes.ruta_id = rutas.id
+        WHERE fecha = ?
+        ORDER BY horario ASC
+    """, (hoy,))
+    viajes_dia = cursor.fetchall()
+    conn.close()
+
+    return render_template('reporte_viajes.html', viajes=viajes_dia, fecha=hoy)
 if __name__ == '__main__':
     app.run(debug=True)

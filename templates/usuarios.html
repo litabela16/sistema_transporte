@@ -1,10 +1,15 @@
 {% extends "base.html" %}
-
 {% block contenido %}
 
 <div class="container mt-4">
     <h2 class="mb-4">Lista de Usuarios</h2>
 
+    <!-- BOTÓN CREAR USUARIO -->
+    <button class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#modalCrearUsuario">
+        Crear Usuario
+    </button>
+
+    <!-- TABLA DE USUARIOS -->
     <table class="table table-bordered table-striped">
         <thead class="table-dark">
             <tr>
@@ -13,14 +18,44 @@
             </tr>
         </thead>
         <tbody>
+        
             {% for u in usuarios %}
             <tr>
+                    
                 <td>{{ u[0] }}</td>
                 <td>{{ u[1] }}</td>
             </tr>
             {% endfor %}
+     
         </tbody>
     </table>
+</div>
+
+<!-- MODAL CREAR USUARIO -->
+<div class="modal fade" id="modalCrearUsuario" tabindex="-1" aria-labelledby="modalCrearUsuarioLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form action="{{ url_for('agregar_usuario') }}" method="POST">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalCrearUsuarioLabel">Crear Nuevo Usuario</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+          </div>
+          <div class="modal-body">
+              <div class="mb-3">
+                  <label for="username" class="form-label">Usuario</label>
+                  <input type="text" class="form-control" name="username" required>
+              </div>
+              <div class="mb-3">
+                  <label for="password" class="form-label">Contraseña</label>
+                  <input type="password" class="form-control" name="password" required>
+              </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Crear Usuario</button>
+          </div>
+      </form>
+    </div>
+  </div>
 </div>
 
 {% endblock %}

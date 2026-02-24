@@ -16,7 +16,7 @@
 
                 <div class="row">
                     <div class="col-md-4">
-                        <input type="text" name="nombre" class="form-control" placeholder="Nombre" required>
+                        <input type="text" name="nombre" class="form-control" placeholder="Nombre y apellido" required>
                     </div>
 
                     <div class="col-md-4">
@@ -27,11 +27,15 @@
                         <input type="number" name="edad" class="form-control" placeholder="Edad" required>
                     </div>
 
-                    <div class="col-md-2">
-                        <input type="text" name="categoria" class="form-control" placeholder="Categoría" required>
-                    </div>
-                </div>
-
+                    <div class="col-md-3">
+    <label for="categoria" class="form-label">Categoría</label>
+    <select name="categoria" id="categoria" class="form-select" required>
+        <option value="">Seleccione</option>
+        <option value="A">A</option>
+        <option value="B">B</option>
+        <option value="C">C</option>
+    </select>
+</div>
                 <div class="row mt-3">
                     <div class="col-md-6">
                         <input type="text" name="seguro" class="form-control" placeholder="Seguro" required>
