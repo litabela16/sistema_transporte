@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+
+<div class="container mt-4">
+
+    <h2 class="mb-4">Conductores</h2>
+
+    <!-- FORMULARIO AGREGAR -->
+    <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+            Agregar Nuevo Conductor
+        </div>
+        <div class="card-body">
+            <form action="{{ url_for('agregar_conductor') }}" method="POST">
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <input type="text" name="nombre" class="form-control" placeholder="Nombre" required>
+                    </div>
+
+                    <div class="col-md-4">
+                        <input type="text" name="carnet" class="form-control" placeholder="Carnet" required>
+                    </div>
+
+                    <div class="col-md-2">
+                        <input type="number" name="edad" class="form-control" placeholder="Edad" required>
+                    </div>
+
+                    <div class="col-md-2">
+                        <input type="text" name="categoria" class="form-control" placeholder="Categoría" required>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <input type="text" name="seguro" class="form-control" placeholder="Seguro" required>
+                    </div>
+
+                    <div class="col-md-6">
+                        <button type="submit" class="btn btn-success w-100">
+                            Guardar Conductor
+                        </button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <!-- TABLA -->
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Carnet</th>
+                <th>Edad</th>
+                <th>Categoría</th>
+                <th>Seguro</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for c in conductores %}
+            <tr>
+                <td>{{ c[0] }}</td>
+                <td>{{ c[1] }}</td>
+                <td>{{ c[2] }}</td>
+                <td>{{ c[3] }}</td>
+                <td>{{ c[4] }}</td>
+                <td>{{ c[5] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+
+{% endblock %}

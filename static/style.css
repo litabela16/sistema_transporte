@@ -1,0 +1,120 @@
+/* ==============================
+   SISTEMA DE GESTIÓN TRANSPORTE
+   Diseño Profesional Moderno
+============================== */
+
+/* Fondo general */
+body {
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Contenedor principal */
+.container {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Navbar personalizada */
+.navbar {
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.3);
+}
+
+.navbar-brand {
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+/* Títulos */
+h2 {
+    font-weight: bold;
+    color: #1e3c72;
+    border-left: 5px solid #2a5298;
+    padding-left: 10px;
+    margin-bottom: 20px;
+}
+
+/* Tablas */
+.table {
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.table thead {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.table tbody tr {
+    transition: all 0.3s ease;
+}
+
+.table tbody tr:hover {
+    background-color: #f1f6ff;
+    transform: scale(1.01);
+}
+
+/* Cards */
+.card {
+    border-radius: 12px;
+    border: none;
+}
+
+/* Botones personalizados */
+.btn-primary {
+    background-color: #1e3c72;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #2a5298;
+}
+
+.btn-outline-light:hover {
+    background-color: white;
+    color: #1e3c72;
+}
+
+/* Badges personalizados */
+.badge {
+    font-size: 0.8rem;
+    padding: 6px 10px;
+}
+
+/* Formularios */
+form input,
+form select {
+    border-radius: 8px !important;
+    box-shadow: none !important;
+}
+
+form input:focus,
+form select:focus {
+    border-color: #2a5298 !important;
+    box-shadow: 0 0 5px rgba(42,82,152,0.5) !important;
+}
+
+/* Footer opcional */
+footer {
+    margin-top: 30px;
+    text-align: center;
+    color: white;
+    font-size: 14px;
+}
+/* NAVBAR PERSONALIZADO */
+.navbar-personalizada {
+    background-color: #0d3b66 !important;
+    padding: 18px 0;
+}
+
+.navbar-personalizada .navbar-brand {
+    color: white !important;
+    font-size: 34px;
+    letter-spacing: 4px;
+    text-align: center;
+    width: 100%;
+}

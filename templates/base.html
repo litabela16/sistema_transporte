@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <nav class="navbar">
+  <div class="container justify-content-center"
+       style="background: linear-gradient(#003366);
+              padding: 12px 0;">
+        <a class="navbar-brand fw-bold text-white text-center"
+       href="/"
+       style="font-size:34px; letter-spacing:4px;">
+        SISTEMA DE TRANSPORTE "TRANS URUS"
+        </a>
+    </div>
+</nav>
+
+<div style="height:6px;
+            background: linear-gradient(to right, #d52b1e, #f9e300, #007a33);">
+</div>
+
+<div style="height:6px;
+            background: linear-gradient(to right, #d52b1e, #f9e300, #007a33);">
+</div>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">Transporte Bolivia</a>
+    <div>
+      <a class="btn btn-outline-light" href="/usuarios">Usuarios</a>
+      <a class="btn btn-outline-light" href="/conductores">Conductores</a>
+      <a class="btn btn-outline-light" href="/buses">Buses</a>
+      <a class="btn btn-outline-light" href="/rutas">Rutas</a>
+      <a class="btn btn-outline-light" href="/viajes">Viajes</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container mt-4">
+{% block contenido %}
+{% endblock %}
+</div>
+
+</body>
+</html>

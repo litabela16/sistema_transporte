@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+
+<div class="container mt-4">
+
+    <h2 class="mb-4">Buses</h2>
+
+    <!-- FORMULARIO AGREGAR BUS -->
+    <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+            Agregar Nuevo Bus
+        </div>
+        <div class="card-body">
+            <form action="{{ url_for('agregar_bus') }}" method="POST">
+
+                <div class="row">
+                    <div class="col-md-3">
+                        <input type="text" name="placa" class="form-control" placeholder="Placa" required>
+                    </div>
+
+                    <div class="col-md-3">
+                        <input type="text" name="modelo" class="form-control" placeholder="Modelo" required>
+                    </div>
+
+                    <div class="col-md-3">
+                        <input type="number" name="capacidad" class="form-control" placeholder="Capacidad" required>
+                    </div>
+
+                    <div class="col-md-3">
+                        <input type="number" name="anio" class="form-control" placeholder="Año" required>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <input type="text" name="estado" class="form-control" placeholder="Estado (Activo / Mantenimiento)" required>
+                    </div>
+
+                    <div class="col-md-6">
+                        <button type="submit" class="btn btn-success w-100">
+                            Guardar Bus
+                        </button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <!-- TABLA DE BUSES -->
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Placa</th>
+                <th>Modelo</th>
+                <th>Capacidad</th>
+                <th>Año</th>
+                <th>Estado</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for b in buses %}
+            <tr>
+                <td>{{ b[0] }}</td>
+                <td>{{ b[1] }}</td>
+                <td>{{ b[2] }}</td>
+                <td>{{ b[3] }}</td>
+                <td>{{ b[4] }}</td>
+                <td>{{ b[5] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+
+{% endblock %}

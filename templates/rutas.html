@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+
+<div class="container mt-4">
+
+    <h2 class="mb-4">Rutas</h2>
+
+    <!-- FORMULARIO AGREGAR RUTA -->
+    <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+            Agregar Nueva Ruta
+        </div>
+        <div class="card-body">
+            <form action="{{ url_for('agregar_ruta') }}" method="POST">
+
+                <div class="row">
+                    <div class="col-md-3">
+                        <input type="text" name="origen" class="form-control" placeholder="Origen" required>
+                    </div>
+
+                    <div class="col-md-3">
+                        <input type="text" name="destino" class="form-control" placeholder="Destino" required>
+                    </div>
+
+                    <div class="col-md-3">
+                        <input type="text" name="recorrido" class="form-control" placeholder="Recorrido" required>
+                    </div>
+
+                    <div class="col-md-3">
+                        <input type="text" name="horas_aprox" class="form-control" placeholder="Horas Aproximadas" required>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <input type="text" name="autorizacion" class="form-control" placeholder="Autorización" required>
+                    </div>
+
+                    <div class="col-md-6">
+                        <button type="submit" class="btn btn-success w-100">
+                            Guardar Ruta
+                        </button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <!-- TABLA DE RUTAS -->
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Origen</th>
+                <th>Destino</th>
+                <th>Recorrido</th>
+                <th>Horas</th>
+                <th>Autorización</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for r in rutas %}
+            <tr>
+                <td>{{ r[0] }}</td>
+                <td>{{ r[1] }}</td>
+                <td>{{ r[2] }}</td>
+                <td>{{ r[3] }}</td>
+                <td>{{ r[4] }}</td>
+                <td>{{ r[5] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+
+{% endblock %}

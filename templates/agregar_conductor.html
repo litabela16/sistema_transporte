@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block contenido %}
+
+<h2>Registrar Nuevo Conductor</h2>
+
+<form method="POST">
+
+    <div class="mb-3">
+        <label>Nombre Completo</label>
+        <input type="text" name="nombre" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label>Carnet de Identidad</label>
+        <input type="text" name="carnet" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label>Edad</label>
+        <input type="number" name="edad" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label>Categoría Licencia</label>
+        <select name="categoria" class="form-control">
+            <option>A</option>
+            <option>B</option>
+            <option>C</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label>¿Cuenta con seguro?</label>
+        <select name="seguro" class="form-control">
+            <option>Sí</option>
+            <option>No</option>
+        </select>
+    </div>
+
+    <button class="btn btn-primary">Guardar</button>
+
+</form>
+
+{% endblock %}

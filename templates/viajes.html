@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+{% block contenido %}
+
+<div class="container mt-4">
+
+    <h2 class="mb-4 text-center">Gestión de Viajes</h2>
+
+    <!-- FORMULARIO -->
+    <div class="card shadow mb-4">
+        <div class="card-header bg-primary text-white">
+            Registrar Nuevo Viaje
+        </div>
+        <div class="card-body">
+
+            <form action="{{ url_for('agregar_viaje') }}" method="POST" class="row g-3">
+
+                <div class="col-md-2">
+                    <input type="date" name="fecha" class="form-control" required>
+                </div>
+
+                <div class="col-md-2">
+                    <input type="time" name="horario" class="form-control" required>
+                </div>
+
+                <!-- Conductor Principal -->
+                <div class="col-md-3">
+                    <select name="conductor_id" class="form-select" required>
+                        <option value="">Conductor Principal</option>
+                        {% for c in conductores %}
+                            <option value="{{ c[0] }}">{{ c[1] }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <!-- Conductor Suplente -->
+                <div class="col-md-3">
+                    <select name="conductor_suplente_id" class="form-select">
+                        <option value="">Conductor Suplente (Relevo - Opcional)</option>
+                        {% for c in conductores %}
+                            <option value="{{ c[0] }}">{{ c[1] }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="col-md-2">
+                    <select name="bus_id" class="form-select" required>
+                        <option value="">Bus</option>
+                        {% for b in buses %}
+                            <option value="{{ b[0] }}">{{ b[1] }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="col-md-3">
+                    <select name="ruta_id" class="form-select" required>
+                        <option value="">Ruta</option>
+                        {% for r in rutas %}
+                            <option value="{{ r[0] }}">{{ r[1] }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="col-12 text-center">
+                    <button class="btn btn-success px-4">
+                        Registrar Viaje
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+    <!-- TABLA -->
+    <table class="table table-bordered table-striped shadow">
+        <thead class="table-dark text-center">
+            <tr>
+                <th>ID</th>
+                <th>Fecha</th>
+                <th>Hora</th>
+                <th>Conductor</th>
+                <th>Suplente</th>
+                <th>Bus</th>
+                <th>Ruta</th>
+            </tr>
+        </thead>
+        <tbody class="text-center">
+            {% for v in viajes %}
+            <tr>
+                <td>{{ v[0] }}</td>
+                <td>{{ v[1] }}</td>
+                <td>{{ v[2] }}</td>
+                <td>{{ v[3] }}</td>
+                <td>
+                    {% if v[4] %}
+                        {{ v[4] }}
+                    {% else %}
+                        —
+                    {% endif %}
+                </td>
+                <td>{{ v[5] }}</td>
+                <td>{{ v[6] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+
+{% endblock %}
